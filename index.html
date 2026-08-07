@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<!--
+  Nombre: Paula Nicolle West Ortiz
+  Carné: 1245524
+  Proyecto: Catálogo de productos utilizando una API
+
+  Nombre2: Michael Darío Gutiérrez Quel
+  Carné: 1199723
+
+  Nombre3: Zane C Bran Lockridge
+  Carné: 1373724
+  
+  
+-->
+
+<html lang="es">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Catálogo · API</title>
+
+
+<style>
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     ENCABEZADO Y NAVEGACIÓN
+     ========================================================= -->
+
+<header class="site-head">
+
+  <nav class="nav">
+
+    <span class="logo">
+      &#9672; Catálogo
+    </span>
+
+
+    <ul class="nav-links">
+
+      <li>
+        <a href="#">Inicio</a>
+      </li>
+
+      <li>
+        <a href="#">Productos</a>
+      </li>
+
+      <li>
+        <a href="#">Contacto</a>
+      </li>
+
+    </ul>
+
+
+    <!-- Botón que alterna entre modo claro y oscuro -->
+
+    <button
+      id="tema"
+      aria-label="Cambiar tema">
+
+      ☀️
+
+    </button>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================================
+     TÍTULO Y TIPO DE CAMBIO
+     ========================================================= -->
+
+<div class="encabezado-productos">
+
+
+  <div>
+
+    <h1>
+      Nuestros productos
+    </h1>
+
+
+    <p class="intro">
+
+      Productos obtenidos desde una API
+      y mostrados dinámicamente.
+
+    </p>
+
+  </div>
+
+
+  <!--
+    El tipo de cambio se muestra para que el usuario
+    sepa qué valor se utilizó para convertir los precios.
+  -->
+
+  <div class="cambio">
+
+    <strong>
+      Tipo de cambio
+    </strong>
+
+    US$1 = Q7.62149
+
+    <br>
+
+    Banco de Guatemala · 28/07/2026
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     BOTÓN PARA OBTENER PRODUCTOS
+     ========================================================= -->
+
+<!--
+  La galería inicia vacía.
+  Los productos solamente se solicitan cuando
+  el usuario presiona este botón.
+-->
+
+<button
+  id="obtenerProductos"
+  class="obtener">
+
+  Obtener productos
+
+</button>
+
+
+<!-- =========================================================
+     FILTROS
+     ========================================================= -->
+
+<div class="filtros">
+
+
+  <button
+    class="filtro activo"
+    data-categoria="todos">
+
+    Todos
+
+  </button>
+
+
+  <button
+    class="filtro"
+    data-categoria="electronics">
+
+    Electrónica
+
+  </button>
+
+
+  <button
+    class="filtro"
+    data-categoria="jewelery">
+
+    Joyería
+
+  </button>
+
+
+  <button
+    class="filtro"
+    data-categoria="men's clothing">
+
+    Hombre
+
+  </button>
+
+
+  <button
+    class="filtro"
+    data-categoria="women's clothing">
+
+    Mujer
+
+  </button>
+
+</div>
+
+
+<!-- =========================================================
+     GALERÍA
+     ========================================================= -->
+
+<!--
+  Esta lista comienza completamente vacía.
+
+  JavaScript será el encargado de crear aquí las tarjetas
+  utilizando los productos recibidos desde la API.
+-->
+
+<ul
+  class="galeria"
+  id="galeria">
+
+</ul>
+
+
+</main>
+
+
+<!-- =========================================================
+     PIE DE PÁGINA
+     ========================================================= -->
+
+<footer class="site-foot">
+
+  &copy; 2026 · Catálogo · Programación Web · API
+
+</footer>
+
+
+<script>
+
+
+</script>
+
+</body>
+
+</html>
