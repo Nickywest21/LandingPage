@@ -9,7 +9,7 @@
   3. Presentación del Proyecto: Josué David Reyes Muñoz (Carné: 1029024)
   4. Pie de Página (Footer): Michael Darío Gutiérrez Quel (Carné: 1199723)
   5. Modo Oscuro (Dark Theme): Paula Nicolle West Ortiz (Carné: 1245524)
--->
+--> 
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -254,6 +254,186 @@
     }
 
     /* =========================================================
+       MÓDULO 2: GALERÍAS DE INTEGRANTES - ESTILOS
+       Encargado: Zane C Bran Lockridge
+       (Reutiliza variables globales y .seccion-bloque / .titulo-seccion)
+       ========================================================= */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    /* 2 columnas en tablet */
+    @media (min-width: 640px) {
+      .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* 3 columnas en escritorio (5 tarjetas => fila 1: 3, fila 2: 2) */
+    @media (min-width: 960px) {
+      .galeria-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .tarjeta-integrante {
+      background-color: var(--bg-card);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .tarjeta-integrante:hover,
+    .tarjeta-integrante:focus-within {
+      transform: translateY(-8px);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 2px var(--color-accent), 0 14px 26px rgba(0, 0, 0, 0.10);
+    }
+
+    .avatar-integrante {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      background-color: var(--color-accent);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.4rem;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-integrante img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nombre-integrante {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .rol-integrante {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .linkedin-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      color: var(--text-muted);
+      border: 1.5px solid var(--text-muted);
+      transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      margin-top: auto;
+    }
+
+    .linkedin-link:hover {
+      color: #FFFFFF;
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    .linkedin-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .contenedor-proyecto {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(126, 176, 155, 0.12), rgba(255, 255, 255, 0.7));
+      transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    }
+
+    body.dark-mode .contenedor-proyecto {
+      background: linear-gradient(135deg, rgba(136, 192, 167, 0.16), rgba(36, 48, 45, 0.8));
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .subtitulo-proyecto {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .texto-proyecto {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .grupo-tecnologias {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .categoria-tecnologia {
+      background-color: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      padding: 0.95rem 1rem;
+    }
+
+    body.dark-mode .categoria-tecnologia {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .categoria-titulo {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.55rem;
+    }
+
+    .tecnologias-proyecto {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tecnologia-item {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 999px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    body.dark-mode .tecnologia-item {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* =========================================================
        4. REGLAS RESPONSIVE Y ANIMACIÓN PURA PARA MÓVILES
        ========================================================= */
     @media (max-width: 768px) {
@@ -368,7 +548,78 @@
       
       <!-- INICIO: Código de Zane (Galerías) -->
       <div class="contenedor-galeria">
-        <p>Espacio reservado para las tarjetas de presentación del equipo.</p>
+        <div class="galeria-grid">
+
+          <!-- Tarjeta 1: Paula Nicolle West -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              PW
+              <img src="assets/images/team/paula.jpg" alt="Foto de perfil de Paula Nicolle West" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Paula Nicolle West</h3>
+            <p class="rol-integrante">Team Lead</p>
+            <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Paula -->
+            <a class="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Paula Nicolle West">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
+
+          <!-- Tarjeta 2: Luis Daniel Zepeda -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              LZ
+              <img src="assets/images/team/luis.jpg" alt="Foto de perfil de Luis Daniel Zepeda" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Luis Daniel Zepeda</h3>
+            <p class="rol-integrante">UI/UX Designer &amp; Layout Designer</p>
+            <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Luis -->
+            <a class="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Luis Daniel Zepeda">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
+
+          <!-- Tarjeta 3: Josue David Reyes -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              JR
+              <img src="assets/images/team/josue.jpg" alt="Foto de perfil de Josue David Reyes" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Josue David Reyes</h3>
+            <p class="rol-integrante">Developer</p>
+            <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Josue -->
+            <a class="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Josue David Reyes">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
+
+          <!-- Tarjeta 4: Michael Dario Gutierrez -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              MG
+              <img src="assets/images/team/michael.jpg" alt="Foto de perfil de Michael Dario Gutierrez" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Michael Dario Gutierrez</h3>
+            <p class="rol-integrante">Developer</p>
+            <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Michael -->
+            <a class="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Michael Dario Gutierrez">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
+
+          <!-- Tarjeta 5: Zane Christian Bran -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              ZB
+              <img src="assets/images/team/zane.jpg" alt="Foto de perfil de Zane Christian Bran" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Zane Christian Bran</h3>
+            <p class="rol-integrante">Developer</p>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/zane-lockridge-363a943a2" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Zane Christian Bran">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
+
+        </div>
       </div>
       <!-- FIN: Código de Zane (Galerías) -->
     </section>
@@ -378,11 +629,52 @@
          Encargado: Josué David Reyes Muñoz
          ========================================================= -->
     <section id="proyecto" class="seccion-bloque">
-      <h2 class="titulo-seccion">Nuestro Proyecto</h2>
+      <h2 class="titulo-seccion">Nuestros Proyectos</h2>
 
       <!-- INICIO: Código de Josué (Proyecto) -->
       <div class="contenedor-proyecto">
-        <p>Espacio reservado para la descripción, objetivos y detalles del proyecto.</p>
+        <h3 class="subtitulo-proyecto">Tecnologías de proyectos</h3>
+<p class="texto-proyecto">Nuestra landing page está organizada en diferentes secciones para mostrar las tecnologías utilizadas en cada capa de nuestros proyectos, algunas ya aplicadas y otras a futuro.</p>       
+       <div class="grupo-tecnologias">
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Frontend</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de Frontend">
+              <span class="tecnologia-item" role="listitem">HTML5</span>
+              <span class="tecnologia-item" role="listitem">CSS3</span>
+              <span class="tecnologia-item" role="listitem">JavaScript</span>
+              <span class="tecnologia-item" role="listitem">Flexbox</span>
+              <span class="tecnologia-item" role="listitem">CSS Grid</span>
+            </div>
+          </div>
+
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Backend</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de Backend">
+              <span class="tecnologia-item" role="listitem">Node.js</span>
+              <span class="tecnologia-item" role="listitem">Express</span>
+              <span class="tecnologia-item" role="listitem">APIs REST</span>
+              <span class="tecnologia-item" role="listitem">JWT</span>
+            </div>
+          </div>
+
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Manejo de datos</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de manejo de datos">
+              <span class="tecnologia-item" role="listitem">SQL</span>
+              <span class="tecnologia-item" role="listitem">MySQL</span>
+              <span class="tecnologia-item" role="listitem">PostgreSQL</span>
+              <span class="tecnologia-item" role="listitem">ORM</span>
+            </div>
+          </div>
+
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Versionamiento</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de versionamiento">
+              <span class="tecnologia-item" role="listitem">Git</span>
+              <span class="tecnologia-item" role="listitem">GitHub</span>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- FIN: Código de Josué (Proyecto) -->
     </section>
