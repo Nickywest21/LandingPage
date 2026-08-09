@@ -360,6 +360,79 @@
       fill: currentColor;
     }
 
+    .contenedor-proyecto {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(126, 176, 155, 0.12), rgba(255, 255, 255, 0.7));
+      transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    }
+
+    body.dark-mode .contenedor-proyecto {
+      background: linear-gradient(135deg, rgba(136, 192, 167, 0.16), rgba(36, 48, 45, 0.8));
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .subtitulo-proyecto {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .texto-proyecto {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .grupo-tecnologias {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .categoria-tecnologia {
+      background-color: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      padding: 0.95rem 1rem;
+    }
+
+    body.dark-mode .categoria-tecnologia {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .categoria-titulo {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.55rem;
+    }
+
+    .tecnologias-proyecto {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tecnologia-item {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 999px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    body.dark-mode .tecnologia-item {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
     /* =========================================================
        4. REGLAS RESPONSIVE Y ANIMACIÓN PURA PARA MÓVILES
        ========================================================= */
@@ -560,7 +633,45 @@
 
       <!-- INICIO: Código de Josué (Proyecto) -->
       <div class="contenedor-proyecto">
-        <p>Espacio reservado para la descripción, objetivos y detalles del proyecto.</p>
+        <h3 class="subtitulo-proyecto">Tecnologías del proyecto</h3>
+        <p class="texto-proyecto">Esta landing page estará organizada con un stack claro para cada capa del desarrollo, desde la interfaz hasta el control de versiones.</p>
+        <div class="grupo-tecnologias">
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Frontend</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de Frontend">
+              <span class="tecnologia-item" role="listitem">HTML5</span>
+              <span class="tecnologia-item" role="listitem">CSS3</span>
+              <span class="tecnologia-item" role="listitem">JavaScript</span>
+              <span class="tecnologia-item" role="listitem">Diseño responsive</span>
+            </div>
+          </div>
+
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Backend</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de Backend">
+              <span class="tecnologia-item" role="listitem">Node.js</span>
+              <span class="tecnologia-item" role="listitem">Express</span>
+              <span class="tecnologia-item" role="listitem">APIs REST</span>
+            </div>
+          </div>
+
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Manejo de datos</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de manejo de datos">
+              <span class="tecnologia-item" role="listitem">MongoDB</span>
+              <span class="tecnologia-item" role="listitem">Mongoose</span>
+              <span class="tecnologia-item" role="listitem">JSON</span>
+            </div>
+          </div>
+
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Versionamiento</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de versionamiento">
+              <span class="tecnologia-item" role="listitem">Git</span>
+              <span class="tecnologia-item" role="listitem">GitHub</span>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- FIN: Código de Josué (Proyecto) -->
     </section>
