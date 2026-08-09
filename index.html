@@ -259,23 +259,30 @@
        (Reutiliza variables globales y .seccion-bloque / .titulo-seccion)
        ========================================================= */
     .galeria-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1.5rem;
       margin-top: 0.5rem;
     }
 
+    /* Mobile: una tarjeta por fila, centrada */
+    .tarjeta-integrante {
+      flex: 0 1 100%;
+      max-width: 320px;
+    }
+
     /* 2 columnas en tablet */
     @media (min-width: 640px) {
-      .galeria-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .tarjeta-integrante {
+        flex-basis: calc(50% - 0.75rem);
       }
     }
 
-    /* 3 columnas en escritorio (5 tarjetas => fila 1: 3, fila 2: 2) */
+    /* 3 columnas en escritorio (5 tarjetas => fila 1: 3 centradas, fila 2: 2 centradas) */
     @media (min-width: 960px) {
-      .galeria-grid {
-        grid-template-columns: repeat(3, 1fr);
+      .tarjeta-integrante {
+        flex-basis: calc(33.333% - 1rem);
       }
     }
 
@@ -300,9 +307,9 @@
 
     .avatar-integrante {
       position: relative;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
+      width: 140px;
+      height: 170px;
+      border-radius: 12px;
       margin-bottom: 1rem;
       background-color: var(--color-accent);
       color: #FFFFFF;
@@ -554,7 +561,7 @@
           <article class="tarjeta-integrante">
             <div class="avatar-integrante">
               PW
-              <img src="assets/images/team/paula.jpg" alt="Foto de perfil de Paula Nicolle West" onerror="this.style.display='none'">
+              <img src="paula.jpg" alt="Foto de perfil de Paula Nicolle West" onerror="this.style.display='none'">
             </div>
             <h3 class="nombre-integrante">Paula Nicolle West</h3>
             <p class="rol-integrante">Team Lead</p>
@@ -568,7 +575,7 @@
           <article class="tarjeta-integrante">
             <div class="avatar-integrante">
               LZ
-              <img src="assets/images/team/luis.jpg" alt="Foto de perfil de Luis Daniel Zepeda" onerror="this.style.display='none'">
+              <img src="luis.jpg" alt="Foto de perfil de Luis Daniel Zepeda" onerror="this.style.display='none'">
             </div>
             <h3 class="nombre-integrante">Luis Daniel Zepeda</h3>
             <p class="rol-integrante">UI/UX Designer &amp; Layout Designer</p>
@@ -582,12 +589,11 @@
           <article class="tarjeta-integrante">
             <div class="avatar-integrante">
               JR
-              <img src="assets/images/team/josue.jpg" alt="Foto de perfil de Josue David Reyes" onerror="this.style.display='none'">
+              <img src="josue.jpg" alt="Foto de perfil de Josue David Reyes" onerror="this.style.display='none'">
             </div>
             <h3 class="nombre-integrante">Josue David Reyes</h3>
             <p class="rol-integrante">Developer</p>
-            <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Josue -->
-            <a class="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Josue David Reyes">
+            <a class="linkedin-link" href="https://www.linkedin.com/in/josu%C3%A9-reyes-mu%C3%B1oz-7bba7b2ab?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=android_app" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Josue David Reyes">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
             </a>
           </article>
@@ -596,7 +602,7 @@
           <article class="tarjeta-integrante">
             <div class="avatar-integrante">
               MG
-              <img src="assets/images/team/michael.jpg" alt="Foto de perfil de Michael Dario Gutierrez" onerror="this.style.display='none'">
+              <img src="michael.jpg" alt="Foto de perfil de Michael Dario Gutierrez" onerror="this.style.display='none'">
             </div>
             <h3 class="nombre-integrante">Michael Dario Gutierrez</h3>
             <p class="rol-integrante">Developer</p>
@@ -610,7 +616,7 @@
           <article class="tarjeta-integrante">
             <div class="avatar-integrante">
               ZB
-              <img src="assets/images/team/zane.jpg" alt="Foto de perfil de Zane Christian Bran" onerror="this.style.display='none'">
+              <img src="zane.jpg" alt="Foto de perfil de Zane Christian Bran" onerror="this.style.display='none'">
             </div>
             <h3 class="nombre-integrante">Zane Christian Bran</h3>
             <p class="rol-integrante">Developer</p>
