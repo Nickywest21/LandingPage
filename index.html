@@ -440,6 +440,161 @@
       border-color: rgba(255, 255, 255, 0.08);
     }
 
+
+   /* =========================================================
+   MÓDULO 4: ESTILOS DEL PIE DE PÁGINA
+   ========================================================= */
+
+.site-foot {
+  margin-top: 4rem;
+  padding: 3.5rem 1.5rem 1.5rem;
+  border-top: 4px solid var(--color-accent, #85b7a2);
+  color: var(--text-footer, #edf4f1);
+  background-color: var(--bg-footer, #2d403d);
+}
+
+.site-foot__container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  width: min(1450px, 100%);
+  margin: 0 auto;
+}
+
+.site-foot__label {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  color: var(--color-accent, #8fc5ae);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-foot__information h2 {
+  margin: 0 0 0.8rem;
+  color: inherit;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.site-foot__information p {
+  max-width: 550px;
+  margin: 0 0 1.5rem;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+.site-foot__repository {
+  display: inline-flex;
+  min-height: 46px;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  color: #233934;
+  background-color: #dcebe5;
+  font-weight: 700;
+  text-decoration: none;
+  align-items: center;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.site-foot__repository:hover {
+  transform: translateY(-2px);
+  background-color: #ffffff;
+}
+
+.site-foot__repository:focus-visible,
+.site-foot__navigation a:focus-visible,
+.site-foot__bottom a:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.site-foot__navigation {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+.site-foot__navigation h3 {
+  margin: 0 0 1rem;
+  color: var(--color-accent, #8fc5ae);
+  font-size: 1rem;
+}
+
+.site-foot__navigation ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.site-foot__navigation li {
+  margin-bottom: 0.75rem;
+}
+
+.site-foot__navigation a {
+  color: var(--text-footer, #edf4f1);
+  text-decoration: none;
+  opacity: 0.8;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.site-foot__navigation a:hover {
+  color: var(--color-accent, #8fc5ae);
+  opacity: 1;
+}
+
+.site-foot__details li {
+  opacity: 0.75;
+}
+
+.site-foot__bottom {
+  display: flex;
+  width: min(1450px, 100%);
+  margin: 3rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.82rem;
+  justify-content: space-between;
+  gap: 1rem;
+  opacity: 0.75;
+}
+
+.site-foot__bottom p {
+  margin: 0;
+}
+
+.site-foot__bottom a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-foot__bottom a:hover {
+  color: var(--color-accent, #8fc5ae);
+}
+
+@media (max-width: 800px) {
+  .site-foot__container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .site-foot__navigation {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .site-foot__bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
     /* =========================================================
        4. REGLAS RESPONSIVE Y ANIMACIÓN PURA PARA MÓVILES
        ========================================================= */
@@ -607,7 +762,7 @@
             <h3 class="nombre-integrante">Michael Dario Gutierrez</h3>
             <p class="rol-integrante">Developer</p>
             <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Michael -->
-            <a class="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Michael Dario Gutierrez">
+            <a class="linkedin-link" href="https://www.linkedin.com/in/michael-dario-guti%C3%A9rrez-quel-759020265/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Michael Dario Gutierrez">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
             </a>
           </article>
@@ -691,14 +846,59 @@
        MÓDULO 4: PIE DE PÁGINA (FOOTER VISUALMENTE DESTACADO)
        Encargado: Michael Darío Gutiérrez Quel
        ========================================================= -->
-  <footer class="site-foot" id="contacto" style="background-color: var(--bg-footer); color: var(--text-footer); padding: 2.5rem 1.25rem; text-align: center; border-top: 3px solid var(--color-accent); transition: background-color var(--transition-speed) ease;">
-    <!-- INICIO: Código de Michael (Pie de página) -->
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <p style="font-weight: 600; font-size: 1.05rem; margin-bottom: 0.4rem; color: var(--text-footer);">[ Nombre del Grupo ]</p>
-      <p style="font-size: 0.85rem; opacity: 0.85;">&copy; 2026 · Proyecto Desarrollo Web · Universidad Rafael Landívar</p>
-    </div>
-    <!-- FIN: Código de Michael (Pie de página) -->
-  </footer>
+
+<footer class="site-foot" id="contacto">
+  <div class="site-foot__container">
+
+    <section class="site-foot__information">
+      <span class="site-foot__label">Desarrollo Web · 2026</span>
+
+      <h2>Landing Page</h2>
+
+      <p>
+        Universidad Rafael Landívar.
+      </p>
+
+      <a
+        class="site-foot__repository"
+        href="https://github.com/Nickywest21/LandingPage"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ver código en GitHub ↗
+      </a>
+    </section>
+
+    <nav class="site-foot__navigation" aria-label="Navegación del pie de página">
+      <div>
+        <h3>Secciones</h3>
+
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#integrantes">Integrantes</a></li>
+          <li><a href="#proyecto">Proyectos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Información</h3>
+
+        <ul class="site-foot__details">
+          <li>Ingeniería en Sistemas</li>
+          <li>Desarrollo Web</li>
+          <li>HTML, CSS y JavaScript</li>
+          <li>Git y GitHub</li>
+        </ul>
+      </div>
+    </nav>
+
+  </div>
+
+  <div class="site-foot__bottom">
+    <p>&copy; 2026 · Proyecto Landing Page</p>
+    <a href="#inicio">Volver arriba ↑</a>
+  </div>
+</footer>
 
   <!-- =========================================================
        MÓDULO 5: MODO OSCURO Y OCULTAMIENTO INDEPENDIENTE
