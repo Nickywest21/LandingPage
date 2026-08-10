@@ -1,244 +1,760 @@
 <!DOCTYPE html>
-
 <!--
-  Nombre: Paula Nicolle West Ortiz
-  Carné: 1245524
-  Proyecto: Catálogo de productos utilizando una API
+  PROYECTO: Landing Page de Presentación de Equipo y Proyecto
+  UNIVERSIDAD RAFAEL LANDÍVAR
 
-  Nombre2: Michael Darío Gutiérrez Quel
-  Carné: 1199723
-
-  Nombre3: Zane C Bran Lockridge
-  Carné: 1373724
-  
-  
--->
-
+  ORGANIZACIÓN Y RESPONSABILIDADES:
+  1. Layout y Estructura Principal: Luis Daniel Zepeda Rodríguez (Carné: 1265824)
+  2. Galerías de Integrantes: Zane C Bran Lockridge (Carné: 1373724)
+  3. Presentación del Proyecto: Josué David Reyes Muñoz (Carné: 1029024)
+  4. Pie de Página (Footer): Michael Darío Gutiérrez Quel (Carné: 1199723)
+  5. Modo Oscuro (Dark Theme): Paula Nicolle West Ortiz (Carné: 1245524)
+--> 
 <html lang="es">
-
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page - Presentación de Equipo</title>
 
-<meta charset="utf-8">
+  <style>
+    /* =========================================================
+       1. VARIABLES GLOBALES Y PALETA PASTEL (DÍA / NOCHE)
+       ========================================================= */
+    :root {
+      /* MODO CLARO (Pastel Suave) */
+      --bg-main: #F4F7F5;
+      --bg-card: #FFFFFF;
+      --bg-header: #E2ECE9;
+      --bg-footer: #2D3A3A;
+      --text-main: #2C3E35;
+      --text-muted: #5A7065;
+      --text-footer: #E0E8E5;
+      --color-accent: #7EB09B;
+      --color-accent-hover: #689984;
+      --header-height: 70px;
+      --transition-speed: 0.3s;
+    }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    /* MODO OSCURO (Pastel Noche) */
+    body.dark-mode {
+      --bg-main: #1A2321;
+      --bg-card: #24302D;
+      --bg-header: #141C1A;
+      --bg-footer: #0E1412;
+      --text-main: #E5ECE9;
+      --text-muted: #9BB0A6;
+      --text-footer: #A9BCC3;
+      --color-accent: #88C0A7;
+      --color-accent-hover: #A0D1BC;
+    }
 
-<title>Catálogo · API</title>
+    /* Reset global y accesibilidad */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 15px);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
 
-<style>
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+      padding-top: var(--header-height);
+    }
 
-</style>
+    /* Anillo de enfoque para navegación accesible por teclado (A11y) */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 3px;
+    }
 
+    /* Enlace de accesibilidad para saltar navegación */
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 10px;
+      background: var(--color-accent);
+      color: #FFFFFF;
+      padding: 8px 12px;
+      z-index: 1000;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 10px;
+    }
+
+    /* =========================================================
+       2. ESTILOS DEL LAYOUT Y NAVEGACIÓN (LUIS DANIEL ZEPEDA)
+       ========================================================= */
+    .site-head {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      background-color: var(--bg-header);
+      display: flex;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color var(--transition-speed) ease;
+    }
+
+    /* Ocultar header hacia arriba al hacer scroll */
+    .site-head.header-hidden {
+      transform: translateY(-100%);
+    }
+
+    .nav {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.25rem;
+      align-items: center;
+      margin-right: 60px; /* Espacio para el boton en escritorio */
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--color-accent);
+      color: #FFFFFF;
+    }
+
+    /* =========================================================
+       3. BOTÓN DE TEMA INDEPENDIENTE (ESCRITORIO Y MÓVIL)
+       ========================================================= */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 13px;
+      right: max(1.5rem, calc((100vw - 1200px) / 2 + 1.5rem));
+      z-index: 101;
+      background: var(--bg-card);
+      border: 2px solid var(--color-accent);
+      color: var(--text-main);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* En escritorio se oculta hacia arriba junto con el header */
+    .theme-toggle-btn.btn-hidden-desktop {
+      transform: translateY(-100px);
+    }
+
+    .theme-toggle-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .theme-toggle-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: var(--text-main);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.5s ease;
+    }
+
+    /* Animación de rotación al cambiar tema */
+    body.dark-mode .theme-toggle-btn svg {
+      transform: rotate(360deg);
+      stroke: var(--color-accent);
+    }
+
+    /* SECCIÓN HERO (Verdadero Inicio) */
+    .hero {
+      text-align: center;
+      padding: 3.5rem 1.25rem 2.5rem 1.25rem;
+      background-color: var(--bg-card);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      transition: background-color var(--transition-speed) ease;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+      font-weight: 800;
+    }
+
+    .hero-slogan {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    .seccion-bloque {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      transition: background-color var(--transition-speed) ease;
+    }
+
+    .titulo-seccion {
+      font-size: 1.6rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--bg-main);
+      padding-bottom: 0.5rem;
+    }
+
+    /* =========================================================
+       MÓDULO 2: GALERÍAS DE INTEGRANTES - ESTILOS
+       Encargado: Zane C Bran Lockridge
+       (Reutiliza variables globales y .seccion-bloque / .titulo-seccion)
+       ========================================================= */
+    .galeria-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Mobile: una tarjeta por fila, centrada */
+    .tarjeta-integrante {
+      flex: 0 1 100%;
+      max-width: 320px;
+    }
+
+    /* 2 columnas en tablet */
+    @media (min-width: 640px) {
+      .tarjeta-integrante {
+        flex-basis: calc(50% - 0.75rem);
+      }
+    }
+
+    /* 3 columnas en escritorio (5 tarjetas => fila 1: 3 centradas, fila 2: 2 centradas) */
+    @media (min-width: 960px) {
+      .tarjeta-integrante {
+        flex-basis: calc(33.333% - 1rem);
+      }
+    }
+
+    .tarjeta-integrante {
+      background-color: var(--bg-card);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .tarjeta-integrante:hover,
+    .tarjeta-integrante:focus-within {
+      transform: translateY(-8px);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 2px var(--color-accent), 0 14px 26px rgba(0, 0, 0, 0.10);
+    }
+
+    .avatar-integrante {
+      position: relative;
+      width: 140px;
+      height: 170px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      background-color: var(--color-accent);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.4rem;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-integrante img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nombre-integrante {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .rol-integrante {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .linkedin-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      color: var(--text-muted);
+      border: 1.5px solid var(--text-muted);
+      transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      margin-top: auto;
+    }
+
+    .linkedin-link:hover {
+      color: #FFFFFF;
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    .linkedin-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .contenedor-proyecto {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(126, 176, 155, 0.12), rgba(255, 255, 255, 0.7));
+      transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    }
+
+    body.dark-mode .contenedor-proyecto {
+      background: linear-gradient(135deg, rgba(136, 192, 167, 0.16), rgba(36, 48, 45, 0.8));
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .subtitulo-proyecto {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .texto-proyecto {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .grupo-tecnologias {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .categoria-tecnologia {
+      background-color: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      padding: 0.95rem 1rem;
+    }
+
+    body.dark-mode .categoria-tecnologia {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .categoria-titulo {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.55rem;
+    }
+
+    .tecnologias-proyecto {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tecnologia-item {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 999px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    body.dark-mode .tecnologia-item {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* =========================================================
+       4. REGLAS RESPONSIVE Y ANIMACIÓN PURA PARA MÓVILES
+       ========================================================= */
+    @media (max-width: 768px) {
+      :root {
+        --header-height: 95px;
+      }
+
+      .site-head {
+        height: auto;
+        padding: 0.6rem 0;
+      }
+
+      .nav {
+        flex-direction: column;
+        gap: 0.4rem;
+        padding: 0 0.75rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem 0.4rem;
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .nav-links a {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.85rem;
+      }
+
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      /* TRANSFORMACIÓN DEL BOTÓN EN MÓVIL (FAB FLOTANTE ABAJO) */
+      .theme-toggle-btn {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        z-index: 200;
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--color-accent);
+      }
+
+      /* En móvil cancelamos la animación vertical y aplicamos SOLO deslizamiento horizontal */
+      .theme-toggle-btn.btn-hidden-desktop {
+        transform: none;
+      }
+
+      .theme-toggle-btn.fab-hidden-mobile {
+        transform: translateX(150%) !important;
+      }
+
+      /* Si el usuario enfoca el botón con teclado, reaparece automáticamente */
+      .theme-toggle-btn:focus-visible {
+        transform: translateX(0) !important;
+      }
+    }
+  </style>
 </head>
-
-
 <body>
 
+  <!-- Enlace accesible para teclado -->
+  <a href="#inicio" class="skip-link">Saltar al inicio de la página</a>
 
-<!-- =========================================================
-     ENCABEZADO Y NAVEGACIÓN
-     ========================================================= -->
+  <!-- =========================================================
+       MÓDULO 1: LAYOUT Y NAVEGACIÓN
+       Encargado: Luis Daniel Zepeda Rodríguez
+       ========================================================= -->
+  <header class="site-head" id="main-header">
+    <nav class="nav" aria-label="Navegación principal">
 
-<header class="site-head">
+      <a href="#inicio" class="logo">
+        [ Nombre del Grupo ]
+      </a>
 
-  <nav class="nav">
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#integrantes">Integrantes</a></li>
+        <li><a href="#proyecto">Proyecto</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
 
-    <span class="logo">
-      &#9672; Catálogo
-    </span>
+    </nav>
+  </header>
 
-
-    <ul class="nav-links">
-
-      <li>
-        <a href="#">Inicio</a>
-      </li>
-
-      <li>
-        <a href="#">Productos</a>
-      </li>
-
-      <li>
-        <a href="#">Contacto</a>
-      </li>
-
-    </ul>
-
-
-    <!-- Botón que alterna entre modo claro y oscuro -->
-
-    <button
-      id="tema"
-      aria-label="Cambiar tema">
-
-      ☀️
-
-    </button>
-
-  </nav>
-
-</header>
-
-
-<main>
-
-
-<!-- =========================================================
-     TÍTULO Y TIPO DE CAMBIO
-     ========================================================= -->
-
-<div class="encabezado-productos">
-
-
-  <div>
-
-    <h1>
-      Nuestros productos
-    </h1>
-
-
-    <p class="intro">
-
-      Productos obtenidos desde una API
-      y mostrados dinámicamente.
-
-    </p>
-
-  </div>
-
-
-  <!--
-    El tipo de cambio se muestra para que el usuario
-    sepa qué valor se utilizó para convertir los precios.
-  -->
-
-  <div class="cambio">
-
-    <strong>
-      Tipo de cambio
-    </strong>
-
-    US$1 = Q7.62149
-
-    <br>
-
-    Banco de Guatemala · 28/07/2026
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     BOTÓN PARA OBTENER PRODUCTOS
-     ========================================================= -->
-
-<!--
-  La galería inicia vacía.
-  Los productos solamente se solicitan cuando
-  el usuario presiona este botón.
--->
-
-<button
-  id="obtenerProductos"
-  class="obtener">
-
-  Obtener productos
-
-</button>
-
-
-<!-- =========================================================
-     FILTROS
-     ========================================================= -->
-
-<div class="filtros">
-
-
-  <button
-    class="filtro activo"
-    data-categoria="todos">
-
-    Todos
-
+  <!-- Botón de Modo Oscuro / Claro (Independiente fuera de la cabecera) -->
+  <button id="tema" class="theme-toggle-btn" type="button" aria-label="Alternar entre modo claro y oscuro">
+    <svg id="icono-tema" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
   </button>
 
+  <!-- VERDADERO INICIO DE LA PÁGINA (HERO SECTION) -->
+  <section class="hero" id="inicio">
+    <h1 class="hero-title">[ Nombre del Grupo ]</h1>
+    <p class="hero-slogan">"Construyendo experiencias digitales accesibles, amigables y eficientes"</p>
+  </section>
 
-  <button
-    class="filtro"
-    data-categoria="electronics">
+  <!-- Contenido Principal -->
+  <main id="main-content">
 
-    Electrónica
+    <!-- =========================================================
+         MÓDULO 2: GALERÍAS DE INTEGRANTES
+         Encargado: Zane C Bran Lockridge
+         ========================================================= -->
+    <section id="integrantes" class="seccion-bloque">
+      <h2 class="titulo-seccion">Nuestro Equipo</h2>
+      
+      <!-- INICIO: Código de Zane (Galerías) -->
+      <div class="contenedor-galeria">
+        <div class="galeria-grid">
 
-  </button>
+          <!-- Tarjeta 1: Paula Nicolle West -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              PW
+              <img src="paula.jpg" alt="Foto de perfil de Paula Nicolle West" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Paula Nicolle West</h3>
+            <p class="rol-integrante">Team Lead</p>
+            <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Paula -->
+            <a class="linkedin-link" href="https://www.linkedin.com/in/nicolle-west-49b0952ab/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Paula Nicolle West">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
 
+          <!-- Tarjeta 2: Luis Daniel Zepeda -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              LZ
+              <img src="luis.jpg" alt="Foto de perfil de Luis Daniel Zepeda" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Luis Daniel Zepeda</h3>
+            <p class="rol-integrante">UI/UX Designer &amp; Layout Designer</p>
+            <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Luis -->
+            <a class="linkedin-link" href="www.linkedin.com/in/nicolle-west-49b0952ab" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Luis Daniel Zepeda">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
 
-  <button
-    class="filtro"
-    data-categoria="jewelery">
+          <!-- Tarjeta 3: Josue David Reyes -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              JR
+              <img src="josue.jpg" alt="Foto de perfil de Josue David Reyes" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Josue David Reyes</h3>
+            <p class="rol-integrante">Developer</p>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/josu%C3%A9-reyes-mu%C3%B1oz-7bba7b2ab?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=android_app" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Josue David Reyes">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
 
-    Joyería
+          <!-- Tarjeta 4: Michael Dario Gutierrez -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              MG
+              <img src="michael.jpg" alt="Foto de perfil de Michael Dario Gutierrez" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Michael Dario Gutierrez</h3>
+            <p class="rol-integrante">Developer</p>
+            <!-- TODO(Zane): Reemplazar href="#" con el LinkedIn real de Michael -->
+            <a class="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Michael Dario Gutierrez">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
 
-  </button>
+          <!-- Tarjeta 5: Zane Christian Bran -->
+          <article class="tarjeta-integrante">
+            <div class="avatar-integrante">
+              ZB
+              <img src="zane.jpg" alt="Foto de perfil de Zane Christian Bran" onerror="this.style.display='none'">
+            </div>
+            <h3 class="nombre-integrante">Zane Christian Bran</h3>
+            <p class="rol-integrante">Developer</p>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/zane-lockridge-363a943a2" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Zane Christian Bran">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+          </article>
 
+        </div>
+      </div>
+      <!-- FIN: Código de Zane (Galerías) -->
+    </section>
 
-  <button
-    class="filtro"
-    data-categoria="men's clothing">
+    <!-- =========================================================
+         MÓDULO 3: PRESENTACIÓN DEL PROYECTO
+         Encargado: Josué David Reyes Muñoz
+         ========================================================= -->
+    <section id="proyecto" class="seccion-bloque">
+      <h2 class="titulo-seccion">Nuestros Proyectos</h2>
 
-    Hombre
+      <!-- INICIO: Código de Josué (Proyecto) -->
+      <div class="contenedor-proyecto">
+        <h3 class="subtitulo-proyecto">Tecnologías de proyectos</h3>
+<p class="texto-proyecto">Nuestra landing page está organizada en diferentes secciones para mostrar las tecnologías utilizadas en cada capa de nuestros proyectos, algunas ya aplicadas y otras a futuro.</p>       
+       <div class="grupo-tecnologias">
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Frontend</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de Frontend">
+              <span class="tecnologia-item" role="listitem">HTML5</span>
+              <span class="tecnologia-item" role="listitem">CSS3</span>
+              <span class="tecnologia-item" role="listitem">JavaScript</span>
+              <span class="tecnologia-item" role="listitem">Flexbox</span>
+              <span class="tecnologia-item" role="listitem">CSS Grid</span>
+            </div>
+          </div>
 
-  </button>
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Backend</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de Backend">
+              <span class="tecnologia-item" role="listitem">Node.js</span>
+              <span class="tecnologia-item" role="listitem">Express</span>
+              <span class="tecnologia-item" role="listitem">APIs REST</span>
+              <span class="tecnologia-item" role="listitem">JWT</span>
+            </div>
+          </div>
 
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Manejo de datos</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de manejo de datos">
+              <span class="tecnologia-item" role="listitem">SQL</span>
+              <span class="tecnologia-item" role="listitem">MySQL</span>
+              <span class="tecnologia-item" role="listitem">PostgreSQL</span>
+              <span class="tecnologia-item" role="listitem">ORM</span>
+            </div>
+          </div>
 
-  <button
-    class="filtro"
-    data-categoria="women's clothing">
+          <div class="categoria-tecnologia">
+            <div class="categoria-titulo">Versionamiento</div>
+            <div class="tecnologias-proyecto" role="list" aria-label="Tecnologías de versionamiento">
+              <span class="tecnologia-item" role="listitem">Git</span>
+              <span class="tecnologia-item" role="listitem">GitHub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FIN: Código de Josué (Proyecto) -->
+    </section>
 
-    Mujer
+  </main>
 
-  </button>
+  <!-- =========================================================
+       MÓDULO 4: PIE DE PÁGINA (FOOTER VISUALMENTE DESTACADO)
+       Encargado: Michael Darío Gutiérrez Quel
+       ========================================================= -->
+  <footer class="site-foot" id="contacto" style="background-color: var(--bg-footer); color: var(--text-footer); padding: 2.5rem 1.25rem; text-align: center; border-top: 3px solid var(--color-accent); transition: background-color var(--transition-speed) ease;">
+    <!-- INICIO: Código de Michael (Pie de página) -->
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <p style="font-weight: 600; font-size: 1.05rem; margin-bottom: 0.4rem; color: var(--text-footer);">[ Nombre del Grupo ]</p>
+      <p style="font-size: 0.85rem; opacity: 0.85;">&copy; 2026 · Proyecto Desarrollo Web · Universidad Rafael Landívar</p>
+    </div>
+    <!-- FIN: Código de Michael (Pie de página) -->
+  </footer>
 
-</div>
+  <!-- =========================================================
+       MÓDULO 5: MODO OSCURO Y OCULTAMIENTO INDEPENDIENTE
+       Encargada: Paula Nicolle West Ortiz & Luis Daniel Zepeda
+       ========================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      // 1. LÓGICA MODO OSCURO (Nicolle)
+      const botonTema = document.getElementById('tema');
+      const iconoTema = document.getElementById('icono-tema');
 
+      const iconoLuna = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+      const iconoSol = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
 
-<!-- =========================================================
-     GALERÍA
-     ========================================================= -->
+      botonTema.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+          iconoTema.innerHTML = iconoSol;
+          botonTema.setAttribute('aria-label', 'Cambiar a modo claro');
+        } else {
+          iconoTema.innerHTML = iconoLuna;
+          botonTema.setAttribute('aria-label', 'Cambiar a modo oscuro');
+        }
+      });
 
-<!--
-  Esta lista comienza completamente vacía.
+      // 2. LÓGICA AUTO-HIDE SEPARADA POR DISPOSITIVO (Daniel - Layout)
+      const header = document.getElementById('main-header');
+      let ultimoScrollY = window.scrollY;
 
-  JavaScript será el encargado de crear aquí las tarjetas
-  utilizando los productos recibidos desde la API.
--->
+      window.addEventListener('scroll', function () {
+        const actualScrollY = window.scrollY;
+        const esMovil = window.innerWidth <= 768;
 
-<ul
-  class="galeria"
-  id="galeria">
+        // Ocultar elementos al hacer scroll hacia abajo pasados los 60px
+        if (actualScrollY > ultimoScrollY && actualScrollY > 60) {
+          header.classList.add('header-hidden');
+          
+          if (esMovil) {
+            botonTema.classList.add('fab-hidden-mobile'); // En móvil se esconde solo a la derecha
+          } else {
+            botonTema.classList.add('btn-hidden-desktop'); // En escritorio sube con la barra
+          }
+        } else {
+          // Mostrar elementos al hacer scroll hacia arriba
+          header.classList.remove('header-hidden');
+          botonTema.classList.remove('fab-hidden-mobile');
+          botonTema.classList.remove('btn-hidden-desktop');
+        }
 
-</ul>
+        ultimoScrollY = actualScrollY;
+      });
 
-
-</main>
-
-
-<!-- =========================================================
-     PIE DE PÁGINA
-     ========================================================= -->
-
-<footer class="site-foot">
-
-  &copy; 2026 · Catálogo · Programación Web · API
-
-</footer>
-
-
-<script>
-
-
-</script>
+    });
+  </script>
 
 </body>
-
 </html>
